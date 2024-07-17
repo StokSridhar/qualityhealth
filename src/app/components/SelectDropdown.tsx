@@ -18,8 +18,7 @@ const SelectDropdown = () => {
       
       <FormControl fullWidth sx={{ mt: 1, mb: 1 , fontSize: "14px" }} >
         <InputLabel id="gender">Gender</InputLabel>
-        <Select
-       
+        <Select 
           labelId="gender"
           id="gender"
           value={gender}
