@@ -37,27 +37,32 @@ export default function Home() {
         </Grid> 
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={0} square> 
       <Grid container spacing={2} sx={{padding:'25px 25px 0 25px'}}>
-        <Grid item xs={9} sx={{color:'#00bfa5'}}>
+        <Grid item xs={8} sx={{color:'#00bfa5'}}>
         <Image src="/favicon.ico" width={30} height={30} alt="QualityHealth Logo" style={{verticalAlign:'middle'}}/> QualityHealth
         </Grid>
-        <Grid item xs={3} justifyContent="flex-end">
+        <Grid item xs={4} justifyContent="flex-end">
         <Button variant="outlined" onClick={toggleDrawer(true)} sx={{textTransform:'none', borderColor:'#00bfa5', color:'#000'}}>How it works</Button>
         </Grid>
       </Grid>
            
-           <Drawer open={open} anchor={"right"} onClose={toggleDrawer(false)}>
-        <><Button variant="outlined" onClick={toggleDrawer(false)}>Close</Button> 
+           <Drawer open={open} anchor={"right"} onClose={toggleDrawer(false)} 
+           sx={{
+            display: { xs: {width:'100%'} , sm: {width:'100%'}  },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: '35%', padding:'20px 40px', borderTopLeftRadius:'5px', borderBottomLeftRadius:'5px' },
+          }}
+           >
+        <><Button variant="text" onClick={toggleDrawer(false)}>Close</Button> 
       <DrawerContent/> 
         </>
       </Drawer>
           <Box 
             sx={{
+              width:'50%',
               my: 0,
               mx: 'auto',
               display: 'flex',
               flexDirection: 'column',
-              alignItems: 'center',
-              width: '50%',
+              alignItems: 'center', 
               overflowY:'auto'
             }}>
             <Typography component="h1" variant="h5" sx={{color:'#006658', fontFamily:'none', fontSize:'48px', mb:'20px'}}>
@@ -67,7 +72,7 @@ export default function Home() {
             <Button sx={{textTransform:'none', background:'#2B3649', my:2, padding:'8px', fontSize:'16px'}} variant="contained" disableElevation fullWidth><MailOutlineIcon sx={{marginRight:'10px'}}/> Continue with email</Button>
             
            
-            <p style={{fontSize:'14px', verticalAlign:'middle'}}>By signing up, I agree to the  <Link href="#" onClick={toggleOffers}>Offer Terms <ExpandMoreIcon style={{fontSize:'14px'}}/></Link>
+            <p style={{fontSize:'14px', verticalAlign:'middle'}}>By signing up, I agree to the  <Link href="#" onClick={toggleOffers} style={{color:'#006658'}}>Offer Terms <ExpandMoreIcon style={{fontSize:'16px'}}/></Link>
             </p>
              {isOpen && <>
               <div className="termsandconditions" style={{fontSize:'10px', textAlign:'center', paddingTop:'10px'}}>
@@ -75,8 +80,7 @@ export default function Home() {
                 I agree to the Offer Terms and understand I am creating a Sharecare account. I agree to the Sharecare Privacy Policy, Terms, and, if applicable to me, the Privacy Notice for California Residents. I consent to Sharecare's processing of any health information I may provide, for the purposes listed in the Privacy Policy. I agree to receive emails, offers, alerts, and other notices. I understand that I can opt-out of marketing communications at any time.
               </p>
             </div>
-            </>} 
-            
+            </>}  
           </Box>
         </Grid>
       </Grid> 

@@ -24,6 +24,11 @@ export interface ButtonProps {
     endIcon?:any
 }
 
+export interface ChipsProps {
+    label: string
+    icon: any
+}
+
 export enum Error {
     Default = 'Required field',
     InvalidAddress = 'Invalid Address. Please select from suggestions',

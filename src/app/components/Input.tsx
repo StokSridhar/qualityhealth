@@ -2,6 +2,8 @@ import { FC } from 'react'
 import { InputProps } from '../utils/Index';
 import TextField from '@mui/material/TextField';  
 import { InputAdornment } from '@mui/material'; 
+import { customTheme } from '../utils/themes';
+ import { ThemeProvider, useTheme } from '@mui/material/styles';
 
 const Input:FC<InputProps> = ({
     label,
@@ -15,13 +17,11 @@ const Input:FC<InputProps> = ({
     helperText,
     disabled,
     onKeyUp
-}) => {
-   const InputStyles = {
-    fontSize: '14px',  
-    color: 'red'
-  };
+}) => { 
+  const outerTheme = useTheme();
     return (
 <> 
+ <ThemeProvider theme={customTheme(outerTheme)}> 
      <TextField 
     id="filled-basic"
     type={type}
@@ -35,31 +35,7 @@ const Input:FC<InputProps> = ({
     disabled={disabled}  
     helperText={helperText}
     onChange={onchange}
-    placeholder={placeholder}
-     style={InputStyles}
-     sx={{
-                boxShadow: "none",
-                ".MuiOutlinedInput-notchedOutline": { border: 0 },
-                "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline":
-                  {
-                    border: 0,
-                    background:'none'
-                  },
-                "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-                  {
-                    border: 0,
-                    background:'none'
-                  },
-                  "&.MuiInputBase-root.Mui-disabled": {
-      color: "rgba(0, 0, 0, 0.6)", // (default alpha is 0.38)
-      background:'white'
-    },
-    "&.MuiFormHelperText-root.Mui-error": { //<--- here
-      backgroundColor: "red",
-      margin:0,
-      paddingLeft: 10
-    },
-              }}
+    placeholder={placeholder} 
     fullWidth
         InputProps={{ 
         endAdornment: (
@@ -69,6 +45,7 @@ const Input:FC<InputProps> = ({
         ),
         }}
     /> 
+     </ThemeProvider>
 </>
     )
 }
