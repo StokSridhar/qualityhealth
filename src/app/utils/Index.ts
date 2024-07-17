@@ -35,5 +35,6 @@ export enum Error {
     InvalidAddress = 'Invalid Address. Please select from suggestions',
     InvalidName = 'Add both first and last name',
     InvalidDOB = 'Invalid date of birth.', 
+    PhoneLengthError = "Phone number must be at least 10 digits."
 }
  

@@ -1,13 +1,13 @@
 "use client" 
 
 import Box from '@mui/material/Box'; 
-import SelectDropdown from "./SelectDropdown";
-import EditIcon from '@mui/icons-material/Edit';   
+import SelectDropdown from "./SelectDropdown"; 
 import InputBox from "./Input"
 import { ChangeEvent, MouseEvent, useState } from "react"; 
 import BadgeIcon from '@mui/icons-material/Badge'; 
 import { Error } from '../utils/Index';
 import Datepicker from './Datepicker';
+import EditIcon from '@mui/icons-material/EditOutlined';
  
 const Form = () => {
 const [firstName, setFirstname] = useState<string>(""); 
@@ -30,7 +30,7 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
     if (e.target.value === '') {
       setNameError(true);
       setNameErrorDesc(Error.Default)
-    } else if(e.target.value.length == 5)  {
+    } else if(e.target.value.length <= 5)  {
       setNameError(true);
       setNameErrorDesc(Error.InvalidName)
     } else {
@@ -42,7 +42,7 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
     if (e.target.value === '') {
       setaddressError(true);
       setAddErrorDesc(Error.Default)
-    } else if(e.target.value.length == 5)  {
+    } else if(e.target.value.length <= 5)  {
       setaddressError(true);
       setAddErrorDesc(Error.InvalidAddress)
     } else {
@@ -52,13 +52,15 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
   }
   const handlemobilechange = (e:any) => {  
     const numericValue = e.target.value.replace(/[^0-9]/g, "");  
-      setMobileNumber(numericValue); 
+    if(numericValue.length !== 10){
+      setMobileError(true)
+      setMobileErrorDesc(Error.PhoneLengthError)
+    } else (
+      setMobileError(false)
+    )
+    setMobileNumber(numericValue); 
   } 
-
-    const handlebtnClick = (e:MouseEvent<HTMLButtonElement>) => {  
-        alert(JSON.stringify(firstName ))
-        console.log("Button Clicked")
-    }
+ 
     
   return (
     <div className="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 formwrapper">
@@ -66,6 +68,7 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
     <div className="registerinfo">
         <BadgeIcon/> Your information 
     </div> 
+                 
               <InputBox 
                 label={nameError ? nameErrorDesc : "Full name"} 
                 name="First Name" 
@@ -99,7 +102,7 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
             onchange={handleFirstnameChange} 
             error={false}
             disabled
-            Icon={<EditIcon/>}
+            Icon={<EditIcon sx={{fill:'#1c2a46'}}/>}
             style={{ borderRight:'1px solid #D1D5DB' }}
           />
           <InputBox 
@@ -109,23 +112,22 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
             onchange={handleFirstnameChange} 
             error={false}
             disabled
-            Icon={<EditIcon/>}
+           Icon={<EditIcon sx={{fill:'#1c2a46'}}/>}
           /> 
       </Box>       
       <InputBox 
-        label="Mobile number" 
+       label={mobileError ? mobileErrorDesc : "Mobile number"}  
         name="Mobile number" 
         type="text"  
         value={mobileNumber}
         onchange={handlemobilechange}  
-        error={false} 
+          error={mobileError} 
         placeholder={"(000) - 000 0000"}
         Icon={ 
         <EditIcon sx={ mobileError ? { fill: '#ef4444' } : { fill: "#1c2a46" }}/>}
       />
       <Datepicker/>
-      <SelectDropdown/> 
-             
+      <SelectDropdown/>  
             </Box>
     </div>
     

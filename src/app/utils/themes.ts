@@ -14,7 +14,10 @@
             '--TextField-brandBorderHoverColor': '#212121',
             '--TextField-brandBorderFocusedColor': '#006658',
             '& label.Mui-focused': {
-              color: 'var(--TextField-brandBorderFocusedColor)',
+              color: 'var(--TextField-brandBorderFocusedColor)', 
+            },
+            '& label': {
+              fontSize: '14px'
             },
           },
         },

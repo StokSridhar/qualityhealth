@@ -80,9 +80,11 @@ body {
   overflow-x: hidden;
   background-color: #f4f6f8;
 }
-/* input[aria-invalid='true'] {
-  background-color:#fef2f2;
-} */
+.MuiInputAdornment-root {
+  margin: 0;
+  align-items: end;
+  height: 0;
+}
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
