@@ -1,9 +1,6 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata } from "next"; 
 import "./globals.css";
-import { ErrorBoundary } from 'react-error-boundary';
-
-const inter = Inter({ subsets: ["latin"] });
+import { ErrorBoundary } from 'react-error-boundary'; 
 
 export const metadata: Metadata = {
   title: "Registration",
@@ -17,7 +14,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body>
         <ErrorBoundary fallback={<div>Something went wrong</div>}>
           {children}
         </ErrorBoundary>
