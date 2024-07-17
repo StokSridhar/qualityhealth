@@ -16,7 +16,8 @@ const Input:FC<InputProps> = ({
     error,
     helperText,
     disabled,
-    onKeyUp
+    onKeyUp,
+    style
 }) => { 
   const outerTheme = useTheme();
     return (
@@ -36,11 +37,12 @@ const Input:FC<InputProps> = ({
     helperText={helperText}
     onChange={onchange}
     placeholder={placeholder} 
+    style={style}
     fullWidth
         InputProps={{ 
         endAdornment: (
         <InputAdornment position="start">
-       {Icon}
+       {Icon }
         </InputAdornment>
         ),
         }}

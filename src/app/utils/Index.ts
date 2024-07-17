@@ -10,6 +10,7 @@ export interface InputProps {
     Icon?: any,
     helperText?:string,
     disabled?:boolean,
+    style?: any,
     onKeyUp?: (e:KeyboardEvent<HTMLInputElement>) => void
     onchange: (e: ChangeEvent<HTMLInputElement>) => void
 }

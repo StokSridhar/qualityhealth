@@ -4,30 +4,12 @@ import Box from '@mui/material/Box';
 import SelectDropdown from "./SelectDropdown";
 import EditIcon from '@mui/icons-material/Edit';   
 import InputBox from "./Input"
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react";
-import Buttons from "./Buttons";
+import { ChangeEvent, MouseEvent, useState } from "react"; 
 import BadgeIcon from '@mui/icons-material/Badge'; 
 import { Error } from '../utils/Index';
 import Datepicker from './Datepicker';
  
-
-
 const Form = () => {
-//     const [inputValues, setInputValue] = useState<any>({
-//     firstName: "",
-//     streetAddress: "",
-//     mobileNumber: "",
-//     dateofBirth: "",
-//     genderType: "",
-//   });
-
-//   const [validation, setValidation] = useState({
-//      firstName: "",
-//     streetAddress: "",
-//     mobileNumber: "",
-//     dateofBirth: "",
-//     genderType: "",
-//   });
 const [firstName, setFirstname] = useState<string>(""); 
 const [nameError, setNameError] = useState(false);
 const [nameErrorDesc, setNameErrorDesc] = useState("");
@@ -48,7 +30,7 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
     if (e.target.value === '') {
       setNameError(true);
       setNameErrorDesc(Error.Default)
-    } else if(e.target.value >= 3)  {
+    } else if(e.target.value.length == 5)  {
       setNameError(true);
       setNameErrorDesc(Error.InvalidName)
     } else {
@@ -60,27 +42,19 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
     if (e.target.value === '') {
       setaddressError(true);
       setAddErrorDesc(Error.Default)
-    } else if(e.target.value >= 3)  {
+    } else if(e.target.value.length == 5)  {
       setaddressError(true);
       setAddErrorDesc(Error.InvalidAddress)
     } else {
         setaddressError(false)
     }
-    //Invalid Address. Please select from suggestions.
+     
   }
-  const handlemobilechange = (e:any) => {
-    console.log(e.target.value)
-    setMobileNumber(e.target.value)
-  }
-   
-//   function formatPhoneNumber2(phoneNumberString:any) {
-//   var cleaned = ('' + phoneNumberString).replace(/\\D/g, '');
-//   var match = cleaned.match(/^(\\d{3})(\\d{3})(\\d{4})$/);
-//   if (match) {
-//     return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-//   }
-//   return null;
-// }
+  const handlemobilechange = (e:any) => {  
+    const numericValue = e.target.value.replace(/[^0-9]/g, "");  
+      setMobileNumber(numericValue); 
+  } 
+
     const handlebtnClick = (e:MouseEvent<HTMLButtonElement>) => {  
         alert(JSON.stringify(firstName ))
         console.log("Button Clicked")
@@ -99,7 +73,8 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
                 value={firstName}
                 onchange={handleNameChange}  
                   error={nameError}  
-                Icon={<EditIcon/>}
+                Icon={ 
+                <EditIcon sx={ nameError ? { fill: '#ef4444' } : { fill: "#1c2a46" }}/>}
               />
               <InputBox 
               label={addressError ? addErrorDesc : "Street address (e.g. '1 Elm Way')"}  
@@ -107,8 +82,8 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
                 type="text" 
                  value={streetAddress}
                 onchange={handleAddressCheck} 
-                error={addressError}   
-                Icon={<EditIcon/>}
+                error={addressError} 
+                Icon={<EditIcon sx={ addressError ? { fill: '#ef4444' } : { fill: "#1c2a46" }}/>}   
               />
                 <Box
       sx={{
@@ -117,42 +92,39 @@ const [mobileErrorDesc, setMobileErrorDesc] = useState("");
         '& > :not(style)': { m: 0 },
       }}
     >
-
-<InputBox 
-                label="City" 
-                name="City" 
-                type="text" 
-                onchange={handleFirstnameChange} 
-                error={false}
-                disabled
-                Icon={<EditIcon/>}
-              />
-               <InputBox 
-                label="State" 
-                name="state" 
-                type="text" 
-                onchange={handleFirstnameChange} 
-                error={false}
-                disabled
-                Icon={<EditIcon/>}
-              />
-
-    </Box>
-               
-              <InputBox 
-                label="Mobile number" 
-                name="Mobile number" 
-                type="text"  
-                value={mobileNumber}
-                onchange={handlemobilechange} 
-                
-                error={false} 
-                placeholder={"(000) - 000 0000"}
-                Icon={<EditIcon/>}
-              /> 
-            
-              <Datepicker/>
- <SelectDropdown/> 
+          <InputBox 
+            label="City" 
+            name="City" 
+            type="text" 
+            onchange={handleFirstnameChange} 
+            error={false}
+            disabled
+            Icon={<EditIcon/>}
+            style={{ borderRight:'1px solid #D1D5DB' }}
+          />
+          <InputBox 
+            label="State" 
+            name="state" 
+            type="text" 
+            onchange={handleFirstnameChange} 
+            error={false}
+            disabled
+            Icon={<EditIcon/>}
+          /> 
+      </Box>       
+      <InputBox 
+        label="Mobile number" 
+        name="Mobile number" 
+        type="text"  
+        value={mobileNumber}
+        onchange={handlemobilechange}  
+        error={false} 
+        placeholder={"(000) - 000 0000"}
+        Icon={ 
+        <EditIcon sx={ mobileError ? { fill: '#ef4444' } : { fill: "#1c2a46" }}/>}
+      />
+      <Datepicker/>
+      <SelectDropdown/> 
              
             </Box>
     </div>
