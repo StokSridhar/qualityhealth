@@ -23,9 +23,9 @@ export default function Home() {
   }
   return (
     <main className={styles.main}> 
-     <span style={{ display: matches ? "none" : "block" }}>
+     <div style={{ display: matches ? "none" : "block", width:'100%' }}>
       <Header/>
-    </span> 
+    </div> 
       <Grid container component="main" sx={{ height: '100vh' }}> 
         <Grid item xs={false} sm={4} md={6}  >
           <div className={styles.qulitycareleft}> 
@@ -36,7 +36,8 @@ export default function Home() {
            <span style={{ display: matches ? "block" : "none" }}>
       <Header/>
     </span> 
-          <Box 
+    <Paper className={styles.formwrap} elevation={0}>
+       <Box  
             sx={{
               width:'50%',
               my: 0,
@@ -64,6 +65,8 @@ export default function Home() {
             </div>
             </>}  
           </Box>
+</Paper>
+         
         </Grid>
       </Grid> 
      </main>

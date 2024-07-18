@@ -7,6 +7,7 @@
 background-color: #f4f6f8;
   min-height: 100vh;
 }
+.formwrap { height: 500px; overflow:auto}
 .qulitycareleft {width: 100%; position: relative; padding-top: 20px; padding-left: 20px;}
 .qulitycareleft img { border-radius: 20px;
    position: relative;
@@ -136,7 +137,10 @@ background-color: #f4f6f8;
   .content {
     padding: 4rem;
   }
-
+.formwrap {
+  height: auto;
+  overflow:hidden
+}
   .grid {
     grid-template-columns: 1fr;
     margin-bottom: 120px;
