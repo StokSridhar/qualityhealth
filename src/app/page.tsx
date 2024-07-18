@@ -29,7 +29,11 @@ export default function Home() {
       <Grid container component="main" sx={{ height: '100vh' }}> 
         <Grid item xs={false} sm={4} md={6}  >
           <div className={styles.qulitycareleft}> 
-           <Image alt="Wecare - Claim $25 in Vacation Spending" src="/bg.png" width={600} height={8000} style={{objectFit: "cover", borderRadius:'20px'}} priority  />
+           {/* <Image alt="Wecare - Claim $25 in Vacation Spending" src="/bg.png" width={600} height={8000} 
+           style={{objectFit: "cover", borderRadius:'20px'}} priority  /> */}
+<img alt="Wecare - Claim $25 in Vacation Spending" src="/bg.png"  />
+                 
+
           </div>  
         </Grid> 
         <Grid item xs={12} sm={8} md={6} component={Paper} elevation={0} square>  
@@ -37,16 +41,7 @@ export default function Home() {
       <Header/>
     </span> 
     <Paper className={styles.formwrap} elevation={0}>
-       <Box  
-            sx={{
-              width:'50%',
-              my: 0,
-              mx: 'auto',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center', 
-              overflowY:'auto'
-            }}>
+       <Box className={styles.formcontainer}>
             <Typography component="h1" variant="h5" sx={{color:'#006658', fontFamily:'none', fontSize:'48px', mb:'20px'}}>
              Sign up
             </Typography>  
